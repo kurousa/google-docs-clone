@@ -1,10 +1,16 @@
 import Button from '@material-tailwind/react/Button'
 import Icon from '@material-tailwind/react/Icon'
+import { getSession, useSession } from "next-auth/client"
 import Head from 'next/head'
-import Header from '../components/Header'
 import Image from 'next/image'
+import Header from '../components/Header'
+import Login from '../components/Login'
 
 export default function Home() {
+  const [session, loading] = useSession();
+  // No valid session, redirect to login.
+  if (!session) return <Login />
+
   return (
     <div>
       <Head>
@@ -25,13 +31,13 @@ export default function Home() {
               ripple="dark"
               className="border-0"
             >
-              <Icon name="more_vert" size="3xl"/>
+              <Icon name="more_vert" size="3xl" />
             </Button>
           </div>
           <div>
             <div className="relative h-52 w-40 border-2 cursor-pointer hover:border-blue-700">
-              <Image 
-                src="/img/docs-blank-googlecolors.png" 
+              <Image
+                src="/img/docs-blank-googlecolors.png"
                 layout="fill"
               />
             </div>
@@ -52,7 +58,16 @@ export default function Home() {
 
         </div>
       </section>
-      
+
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session,
+    }
+  }
 }
