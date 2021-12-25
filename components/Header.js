@@ -13,7 +13,7 @@ function Header() {
               rounded={true}
               iconOnly={true}
               ripple="dark"
-              className="h-20 w-20 border-0"
+              className="h-20 w-20 !border-0"
             >
               <Icon name="menu" size="3xl"/>
             </Button>
@@ -35,7 +35,7 @@ function Header() {
               rounded={true}
               iconOnly={true}
               ripple="dark"
-              className="ml-5 md:ml-20 h-20 w-20 border-0"
+              className="ml-5 md:ml-20 h-20 w-20 !border-0"
             >
               <Icon name="apps" size="3xl"/>
             </Button>
